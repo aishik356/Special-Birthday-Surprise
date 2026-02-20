@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Princess Chahd</title>
+    <style>
+        :root {
+            --cherry-blossom: #ffb7c5;
+            --dark-pink: #ff8fa3;
+            --white-soft: #fffafa;
+            --text-color: #d63384;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: var(--cherry-blossom);
+        }
+
+        #cherry-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        #intro-screen { background-color: var(--white-soft); z-index: 40; }
+        #letter-screen { background: linear-gradient(180deg, #ffb7c5 0%, #ffe5ec 100%); z-index: 30; }
+        #gift-request-screen { background: linear-gradient(180deg, #ffe5ec 0%, #ffb7c5 100%); z-index: 20; }
+        #proposal-screen { background: radial-gradient(circle, #fff0f3 0%, #ffb7c5 100%); z-index: 10; }
+
+        .btn-style {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(255, 143, 163, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-style:hover { transform: scale(1.05); background-color: #ff758f; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            margin: 20px;
+            border-radius: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--text-color);
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .bubbly-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .ahem { display: inline-block; color: #ff4d6d; animation: pulse 1.5s infinite; font-weight: bold; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        .slide-up { transform: translateY(-100%); }
+
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            z-index: 200;
+            text-align: center;
+            border: 3px solid var(--cherry-blossom);
+        }
+
+        /* Success State */
+        #success-content {
+            display: none;
+            text-align: center;
+        }
+
+        .cat-img {
+            width: 250px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .final-msg {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff4d6d;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="music1" loop><source src="music.mp3" type="audio/mpeg"></audio>
+    <audio id="music2" loop><source src="music2.mp3" type="audio/mpeg"></audio>
+
+    <canvas id="cherry-canvas"></canvas>
+
+    <div id="custom-alert">
+        <p id="alert-text" style="font-size: 1.6rem; color: var(--text-color); margin-bottom: 20px;">pls 🥺🥺</p>
+        <button class="btn-style" onclick="closeAlert()">Okay...</button>
+    </div>
+
+    <div id="intro-screen" class="screen">
+        <div style="text-align: center;">
+            <h1 style="color: var(--dark-pink); font-size: 2.5rem;">Happy Birthday My Princess Cutie Chahd 🥰🥰🥰😉</h1>
+            <button class="btn-style" onclick="startExperience()">Click for Your Surprise 🌸</button>
+        </div>
+    </div>
+
+    <div id="letter-screen" class="screen">
+        <div class="glass-card">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">👑</h1>
+            <div style="text-align: left; line-height: 1.6;">
+                <p>Happy Birthday my bbg! You are truly the most beautiful, sweet, kind, funny, and vibing girl I’ve ever met. I am so incredibly grateful that our paths crossed. From the very day I met you, I started falling for you. You have this amazing way of making me feel special, like I’m the only person in the room. You’ve shown me that I can be loved too, and for that, I’ll always be thankful. You really are the best girl. You’re my peace when things get loud, my favorite laugh, and the person I always look forward to talking to. Thank you for just being <b>you</b>. I hope today is as magical as the feeling you give me every single day. 🌸 Forever Yours 💖 Thank you for always being there for me as my best friend, my bff, and my... umm.. <span class="ahem">ahem 👉👈</span>.</p>
+            </div>
+            <button class="btn-style" onclick="nextPage('letter-screen')">Next ❤️</button>
+        </div>
+    </div>
+
+    <div id="gift-request-screen" class="screen">
+        <div class="glass-card">
+            <h2>🌸 A Small Request...</h2>
+            <p style="font-size: 1.2rem;">Can i ask for something as my birthday gift as this your birthday gift which i am giving you in advance on my birthday so can i ask? 🥺</p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn-style" onclick="toProposal()">Sure, go ahead! ✨</button>
+                <button class="btn-style" style="background-color: #eee; color: #888;" onclick="showPls('pls 🥺🥺')">No, don't ask ✋</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="proposal-screen" class="screen">
+        <div class="glass-card" id="proposal-card">
+            <div id="proposal-content">
+                <span class="bubbly-text">Will u be my girlfriend officially? 👉👈🥺🥺</span>
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <button class="btn-style" onclick="celebrate()">YES! 💖</button>
+                    <button class="btn-style" style="background-color: #eee; color: #888;" onclick="showPls('um pls 🥺🥺🥺🥺👉👈')">No 😢</button>
+                </div>
+            </div>
+
+            <div id="success-content">
+                <img src="cat.jpg" alt="Cute Cat" class="cat-img">
+                <div class="final-msg">thank u i love u so muchhhhhhhhh</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startExperience() {
+            document.getElementById('music1').play();
+            nextPage('intro-screen');
+        }
+
+        function toProposal() {
+            document.getElementById('music1').pause();
+            document.getElementById('music2').play();
+            nextPage('gift-request-screen');
+        }
+
+        function nextPage(currentId) {
+            document.getElementById(currentId).classList.add('slide-up');
+            if(currentId === 'intro-screen') {
+                for(let i = 0; i < 75; i++) petals.push(new Petal(true));
+            }
+        }
+
+        function celebrate() {
+            document.getElementById('proposal-content').style.display = 'none';
+            document.getElementById('success-content').style.display = 'block';
+            // Massive confetti burst
+            for(let i = 0; i < 150; i++) petals.push(new Petal(true));
+        }
+
+        function showPls(msg) { 
+            document.getElementById('alert-text').innerText = msg;
+            document.getElementById('custom-alert').style.display = 'block'; 
+        }
+        function closeAlert() { document.getElementById('custom-alert').style.display = 'none'; }
+
+        // --- Petals / Confetti Logic ---
+        const canvas = document.getElementById('cherry-canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Petal {
+            constructor(isBurst = false) { 
+                this.reset(isBurst); 
+                if(!isBurst) this.y = Math.random() * canvas.height; 
+            }
+            reset(isBurst) {
+                this.x = isBurst ? canvas.width / 2 : Math.random() * canvas.width;
+                this.y = isBurst ? canvas.height / 2 : -20;
+                this.size = Math.random() * 8 + 6;
+                this.vY = isBurst ? (Math.random() * 15 - 7.5) : (Math.random() * 1.5 + 1);
+                this.vX = isBurst ? (Math.random() * 15 - 7.5) : (Math.random() * 2 - 1);
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 3 - 1.5;
+                this.opacity = Math.random() * 0.6 + 0.4;
+                this.isBurst = isBurst;
+                // Mix in some colorful confetti colors for the burst
+                this.color = isBurst ? `hsl(${Math.random() * 360}, 100%, 70%)` : '#ffc0cb';
+            }
+            draw() {
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle * Math.PI / 180);
+                ctx.globalAlpha = this.opacity; ctx.beginPath();
+                if(this.isBurst) {
+                    ctx.rect(-this.size/2, -this.size/2, this.size, this.size);
+                } else {
+                    ctx.moveTo(0,0);
+                    ctx.bezierCurveTo(-this.size, -this.size, -this.size, this.size, 0, this.size);
+                    ctx.bezierCurveTo(this.size, this.size, this.size, -this.size, 0, 0);
+                }
+                ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
+            }
+            update() {
+                this.y += this.vY; this.x += this.vX; this.angle += this.spin;
+                if(this.isBurst) { this.vY += 0.12; this.opacity -= 0.002; }
+                if (this.y > canvas.height + 20 || (this.isBurst && this.opacity <= 0)) {
+                    if (this.isBurst) {
+                        const index = petals.indexOf(this);
+                        if (index > -1) petals.splice(index, 1);
+                    } else { this.reset(false); }
+                }
+            }
+        }
+        for (let i = 0; i < 70; i++) petals.push(new Petal(false));
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
