@@ -102,6 +102,9 @@
             z-index: 200;
             text-align: center;
             border: 3px solid var(--cherry-blossom);
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
         }
 
         /* Success State */
@@ -132,7 +135,7 @@
     <canvas id="cherry-canvas"></canvas>
 
     <div id="custom-alert">
-        <p id="alert-text" style="font-size: 1.6rem; color: var(--text-color); margin-bottom: 20px;">pls 🥺🥺</p>
+        <p id="alert-text" style="font-size: 1.1rem; color: var(--text-color); margin-bottom: 20px; line-height: 1.5; text-align: left;"></p>
         <button class="btn-style" onclick="closeAlert()">Okay...</button>
     </div>
 
@@ -167,16 +170,16 @@
     <div id="proposal-screen" class="screen">
         <div class="glass-card" id="proposal-card">
             <div id="proposal-content">
-                <span class="bubbly-text">Will u be my girlfriend officially?    👉👈🥺🥺</span>
-                <div style="display: flex; gap: 35px; justify-content: center;">
+                <span class="bubbly-text">Will u be my girlfriend officially? 👉👈🥺🥺</span>
+                <div style="display: flex; gap: 20px; justify-content: center;">
                     <button class="btn-style" onclick="celebrate()">YES! 💖</button>
-                    <button class="btn-style" style="background-color: #eee; color: #888;" onclick="showPls('um pls 🥺🥺🥺🥺👉👈')">No 😢</button>
+                    <button class="btn-style" style="background-color: #eee; color: #888;" onclick="showPls('pls , just give me one chance to prove myslef to you that dating is good am prove it you i just love you so much i want to prove that i think i can make u your interest in dating give me a chance to prove myslef u know this a fact that when u have lost interest in dating and etc universe gives one oppurtunity/door to show you that go just take the risk and try it pls just give me a chance to show that i can kepp you happy i dont care about you vanishing am sure i will be able to make u think that the risk was worth it. \n\n I know it might feel safer to keep your heart guarded, but I promise to be the one who makes it worth opening up again. I want to show you that dating can be beautiful, slow, and full of the respect and care you deserve. Just give me the chance to remind you why taking a risk on love is the best decision we could make.')">No 😢</button>
                 </div>
             </div>
 
             <div id="success-content">
                 <img src="cat.jpg" alt="Cute Cat" class="cat-img">
-                <div class="final-msg">thankkkkkkkkk u i love u so muchhhhhhhhh</div>
+                <div class="final-msg">thank u i love u so muchhhhhhhhh</div>
             </div>
         </div>
     </div>
@@ -272,6 +275,4 @@
     </script>
 </body>
 </html>
-
-
 
